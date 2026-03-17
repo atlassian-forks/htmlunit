@@ -789,9 +789,16 @@ public final class HtmlPage extends SgmlPage implements Cloneable {
                 return;
             }
 
-            final Script script = loadJavaScriptFromUrl(scriptURL, charset);
-            if (script != null) {
-                getWebClient().getJavaScriptEngine().execute(this, script);
+            try {
+                final Script script = loadJavaScriptFromUrl(scriptURL, charset);
+                if (script != null) {
+                    getWebClient().getJavaScriptEngine().execute(this, script);
+                }
+            } catch (Exception e) {
+                this.getLog().error("Error loading javascript from [" + scriptURL.toExternalForm() + "]: ", e);
+                if (this.getWebClient().isThrowExceptionOnScriptError()) {
+                    throw new ScriptException(this, e);
+                }
             }
         }
     }
