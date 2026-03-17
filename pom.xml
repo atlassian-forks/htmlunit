@@ -511,8 +511,8 @@ The reference stays the maven 1 build.
 	</dependencies>
 	<distributionManagement>
 		<repository>
-			<id>atlassian-3rdparty-snapshot</id>
-			<url>https://packages.atlassian.com/maven/3rdparty-snapshot</url>
+			<id>atlassian-3rdparty</id>
+			<url>https://packages.atlassian.com/maven/3rdparty</url>
 		</repository>
 		<snapshotRepository>
 			<id>atlassian-3rdparty-snapshot</id>
