@@ -247,8 +247,7 @@ public class HttpWebConnection extends WebConnectionImpl {
                 while (iterator.hasNext()) {
                     final PartBase newPart;
                     final KeyValuePair pair = (KeyValuePair) iterator.next();
-                    if (pair instanceof KeyDataPair) {
-                        final KeyDataPair pairWithFile = (KeyDataPair) pair;
+                    if (pair instanceof KeyDataPair pairWithFile && pairWithFile.getFile().isFile()) {
                         newPart = new FilePart(
                                 pairWithFile.getName(),
                                 pairWithFile.getValue(),

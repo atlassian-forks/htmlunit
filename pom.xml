@@ -2,21 +2,18 @@
 CAUTION: migration from maven 1 to maven 2 as build system for htmlunit is still work in progress.
 The reference stays the maven 1 build.
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>htmlunit</artifactId>
 	<groupId>net.sourceforge.htmlunit</groupId>
-	<version>1.11</version>
+	<version>1.11-atlassian-1.1-SNAPSHOT</version>
 	<name>HtmlUnit</name>
 	<organization>
-
 		<name>Gargoyle Software Inc.</name>
 		<url>http://www.GargoyleSoftware.com/</url>
 	</organization>
 	<packaging>jar</packaging>
-	<description>A tool for testing web based applications</description>
+	<description>A headless browser intended for use in testing web-based applications.</description>
 	<url>http://htmlunit.sourceforge.net</url>
 
 	<issueManagement>
@@ -37,12 +34,12 @@ The reference stays the maven 1 build.
 	<scm>
 
 		<connection>
-			scm:svn:https://svn.sourceforge.net/svnroot/htmlunit/trunk/htmlunit
+			scm:git:git@github.com:atlassian-forks/htmlunit.git
 		</connection>
 		<developerConnection>
-			scm:svn:https://svn.sourceforge.net/svnroot/htmlunit/trunk/htmlunit
+			scm:git:git@github.com:atlassian-forks/htmlunit.git
 		</developerConnection>
-		<url>http://svn.sourceforge.net/viewcvs.cgi/htmlunit/</url>
+		<url>https://github.com/atlassian-forks/htmlunit</url>
 	</scm>
 	<mailingLists>
 
@@ -236,7 +233,18 @@ The reference stays the maven 1 build.
 	</contributors>
 
 	<build>
-		<sourceDirectory>src/java</sourceDirectory>		
+		<sourceDirectory>src/java</sourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<!-- Update the links reference in javadoc and clover plugins when this changes -->
+					<source>25</source>
+					<target>25</target>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 	<dependencies>
 		<dependency>
@@ -323,29 +331,13 @@ The reference stays the maven 1 build.
 		</dependency>
 	</dependencies>
 	<distributionManagement>
-
-		<site>
-			<id>htmlunit-website</id>
-			<name>HtmlUnit WebSite - Sourceforge</name>
-			<url>
-				scp://shell.sourceforge.net/home/groups/h/ht/htmlunit/htdocs/
-			</url>
-		</site>
 		<repository>
-
-			<id>htmlunit-m2-repo</id>
-			<url>
-				scpexe://shell.sourceforge.net/home/groups/h/ht/htmlunit/htdocs/m2-repo
-			</url>
-			<name>HtmlUnit Maven 2 Repository</name>
+			<id>atlassian-3rdparty</id>
+			<url>https://packages.atlassian.com/maven/3rdparty</url>
 		</repository>
 		<snapshotRepository>
-			<id>htmlunit-m2-repo-snapshots</id>
-
-			<url>
-				scpexe://shell.sourceforge.net/home/groups/h/ht/htmlunit/htdocs/m2-repo-snapshots
-			</url>
-			<name>HtmlUnit Maven 2 Snapshots Repository</name>
+			<id>atlassian-3rdparty-snapshot</id>
+			<url>https://packages.atlassian.com/maven/3rdparty-snapshot</url>
 		</snapshotRepository>
 	</distributionManagement>
 </project>
