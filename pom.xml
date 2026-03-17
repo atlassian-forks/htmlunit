@@ -8,7 +8,7 @@ The reference stays the maven 1 build.
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>htmlunit</artifactId>
 	<groupId>net.sourceforge.htmlunit</groupId>
-	<version>1.14</version>
+	<version>1.14-atlassian-1-SNAPSHOT</version>
 	<name>HtmlUnit</name>
 	<organization>
 		<name>Gargoyle Software Inc.</name>
@@ -34,11 +34,18 @@ The reference stays the maven 1 build.
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<!-- Update the links reference in javadoc and clover plugins when this changes -->
-					<source>1.4</source>
-					<target>1.4</target>
+					<source>25</source>
+					<target>25</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -156,9 +163,9 @@ The reference stays the maven 1 build.
 		</license>
 	</licenses>
 	<scm>
-		<connection>scm:svn:https://htmlunit.svn.sourceforge.net/svnroot/htmlunit/trunk/htmlunit</connection>
-		<developerConnection>scm:svn:https://htmlunit.svn.sourceforge.net/svnroot/htmlunit/trunk/htmlunit</developerConnection>
-		<url>http://htmlunit.svn.sourceforge.net/viewvc/htmlunit</url>
+		<connection>scm:git:git@github.com:atlassian-forks/htmlunit.git</connection>
+		<developerConnection>scm:git:git@github.com:atlassian-forks/htmlunit.git</developerConnection>
+		<url>https://github.com/atlassian-forks/htmlunit</url>
 	</scm>
   	<ciManagement>
   	  	<system>Cruise Control</system>
@@ -504,26 +511,13 @@ The reference stays the maven 1 build.
 		</dependency>
 	</dependencies>
 	<distributionManagement>
-		<site>
-			<id>htmlunit-website</id>
-			<name>HtmlUnit WebSite - Sourceforge</name>
-			<url>
-				scp://shell.sourceforge.net/home/groups/h/ht/htmlunit/htdocs/
-			</url>
-		</site>
 		<repository>
-			<id>htmlunit-m2-repo</id>
-			<url>
-				scpexe://shell.sourceforge.net/home/groups/h/ht/htmlunit/htdocs/m2-repo
-			</url>
-			<name>HtmlUnit Maven 2 Repository</name>
+			<id>atlassian-3rdparty-snapshot</id>
+			<url>https://packages.atlassian.com/maven/3rdparty-snapshot</url>
 		</repository>
 		<snapshotRepository>
-			<id>htmlunit-m2-repo-snapshots</id>
-			<url>
-				scpexe://shell.sourceforge.net/home/groups/h/ht/htmlunit/htdocs/m2-repo-snapshots
-			</url>
-			<name>HtmlUnit Maven 2 Snapshots Repository</name>
+			<id>atlassian-3rdparty-snapshot</id>
+			<url>https://packages.atlassian.com/maven/3rdparty-snapshot</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<!-- Maven plugin snapshot repo required for Checkstyle plugin 2.2-SNAPSHOT. -->
