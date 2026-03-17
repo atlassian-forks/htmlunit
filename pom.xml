@@ -6,7 +6,7 @@ The reference stays the maven 1 build.
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>htmlunit</artifactId>
 	<groupId>net.sourceforge.htmlunit</groupId>
-	<version>1.14-atlassian-3-SNAPSHOT</version>
+	<version>1.14-atlassian-3</version>
 	<name>HtmlUnit</name>
 	<organization>
 		<name>Gargoyle Software Inc.</name>
@@ -164,7 +164,7 @@ The reference stays the maven 1 build.
 		<connection>scm:git:git@github.com:atlassian-forks/htmlunit.git</connection>
 		<developerConnection>scm:git:git@github.com:atlassian-forks/htmlunit.git</developerConnection>
 		<url>https://github.com/atlassian-forks/htmlunit</url>
-	  <tag>HEAD</tag>
+	  <tag>htmlunit-1.14-atlassian-3</tag>
   </scm>
   	<ciManagement>
   	  	<system>Cruise Control</system>
