@@ -1561,7 +1561,8 @@ public class WebClient implements Serializable {
         final String path = url.getPath();
         final String fixedPath = encode(path, URI.allowed_abs_path);
         final String query = url.getQuery();
-        final String fixedQuery = encode(query, URI.allowed_query);
+        String fixedQuery = encode(query, URI.allowed_query);
+        fixedQuery = fixedQuery != null ? fixedQuery.replace("%25", "%") : null; //newest commons-codec encodes % even if we ask it not to: revert
 
         if (!StringUtils.equals(path, fixedPath) || !StringUtils.equals(query, fixedQuery)) {
             final StringBuffer newUrl = new StringBuffer();
