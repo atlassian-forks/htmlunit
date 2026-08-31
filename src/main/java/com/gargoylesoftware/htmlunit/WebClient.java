@@ -1549,6 +1549,14 @@ public class WebClient implements Serializable {
         return webResponse;
     }
 
+
+    private String fixEncodeAfterCodec339(String encoded) {
+        if (encoded == null) {
+            return null;
+        }
+        return encoded.replace("%25", "%").replace("%2B", "+"); //newest commons-codec encodes % & + even if we ask it not to: revert
+    }
+
     /**
      * Encodes illegal parameter in path or query string (if any) as done by browsers.
      * Example: changes "http://first?a=b c" to "http://first?a=b%20c"
@@ -1559,10 +1567,9 @@ public class WebClient implements Serializable {
      */
     protected URL encodeUrl(final URL url) throws MalformedURLException, URIException {
         final String path = url.getPath();
-        final String fixedPath = encode(path, URI.allowed_abs_path);
+        final String fixedPath = fixEncodeAfterCodec339(encode(path, URI.allowed_abs_path));
         final String query = url.getQuery();
-        String fixedQuery = encode(query, URI.allowed_query);
-        fixedQuery = fixedQuery != null ? fixedQuery.replace("%25", "%").replace("%2B", "+") : null; //newest commons-codec encodes % & + even if we ask it not to: revert
+        final String fixedQuery = fixEncodeAfterCodec339(encode(query, URI.allowed_query));
 
         if (!StringUtils.equals(path, fixedPath) || !StringUtils.equals(query, fixedQuery)) {
             final StringBuffer newUrl = new StringBuffer();
